@@ -1,0 +1,5 @@
+config system fortiguard
+  set fortiguard-anycast disable
+  set protocol udp
+  set sdns-server-ip "208.91.112.220" "173.243.140.53" "210.7.96.53" "200.91.112.220"
+end
