@@ -61,3 +61,29 @@ config system automation-stitch
         end
     next
 end
+
+
+# Add only for Systems which run an SD-WAN Configuration
+
+config system automation-trigger
+    edit "SDWAN Warning"
+        set description ''
+        set trigger-type event-based
+        set event-type event-log
+        set logid 22931 22930
+    next
+end
+config system automation-stitch
+    edit "SDWAN Warning"
+        set description "Automation stitch to send an email when an SDWAN interface reports a warning."
+        set status enable
+        set trigger "SDWAN Warning"
+        set condition-logic and
+        config actions
+            edit 1
+                set action "Default Email"
+                set delay 0
+                set required enable
+            next
+        end
+end
