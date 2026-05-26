@@ -72,6 +72,18 @@ config system automation-trigger
         set event-type event-log
         set logid 22931 22930
     next
+    edit "SDWAN - Member out of SLA"
+        set description ''
+        set trigger-type event-based
+        set event-type event-log
+        set logid 22923
+        config fields
+            edit 1
+                set name "msg"
+                set value "*Member out-of-sla*"
+            next
+        end
+    next
 end
 config system automation-stitch
     edit "SDWAN Warning"
@@ -86,4 +98,18 @@ config system automation-stitch
                 set required enable
             next
         end
+    next
+    edit "SDWAN - Member Out of SLA"
+        set description ''
+        set status enable
+        set trigger "SDWAN - Member out of SLA"
+        set condition-logic and
+        config actions
+            edit 1
+                set action "Default Email"
+                set delay 0
+                set required enable
+            next
+        end
+    next
 end
